@@ -51,7 +51,7 @@ class Customer {
         //add footer lines
         stringResultBuilder
                 .append("Amount owed is ")
-                .append(String.valueOf(totalAmount))
+                .append(totalAmount)
                 .append("\n").append("You earned ")
                 .append(frequentRenterPoints)
                 .append(" frequent renter points");
