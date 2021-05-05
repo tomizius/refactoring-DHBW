@@ -23,8 +23,7 @@ class Customer {
         var stringResultBuilder = new StringBuilder();
         stringResultBuilder.append("Rental Record for ")
                 .append(this.getName())
-                .append("\n")
-                .append("\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n")
+                .append("\n\tTitle\t\tDays\tAmount\n")
         ;
 
         while (enumRentals.hasMoreElements()) {
@@ -40,8 +39,7 @@ class Customer {
             //show figures for this rental
             stringResultBuilder.append("\t")
                     .append(each.getMovie().getTitle())
-                    .append("\t")
-                    .append("\t")
+                    .append("\t\t")
                     .append(each.getDaysRented())
                     .append("\t")
                     .append(thisAmount)
