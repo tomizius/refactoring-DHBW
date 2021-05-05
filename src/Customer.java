@@ -20,12 +20,16 @@ class Customer {
         double totalAmount = 0;
         var frequentRenterPoints = 0;
         Enumeration<Rental> enumRentals = Collections.enumeration(rentals);
-        String result = "Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        var stringResultBuilder = new StringBuilder();
+        stringResultBuilder.append("Rental Record for ")
+                .append(this.getName())
+                .append("\n")
+                .append("\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n")
+        ;
 
         while (enumRentals.hasMoreElements()) {
-            double thisAmount = 0;
-            Rental each = enumRentals.nextElement();
+            double thisAmount;
+            var each = enumRentals.nextElement();
             //determine amounts for each line
             thisAmount = amountFor(each);
             // add frequent renter points
@@ -34,13 +38,24 @@ class Customer {
             if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
                 frequentRenterPoints++;
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + String.valueOf(thisAmount) + "\n";
+            stringResultBuilder.append("\t")
+                    .append(each.getMovie().getTitle())
+                    .append("\t")
+                    .append("\t")
+                    .append(each.getDaysRented())
+                    .append("\t")
+                    .append(thisAmount)
+                    .append("\n");
             totalAmount += thisAmount;
         }
         //add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-        return result;
+        stringResultBuilder
+                .append("Amount owed is ")
+                .append(String.valueOf(totalAmount))
+                .append("\n").append("You earned ")
+                .append(frequentRenterPoints)
+                .append(" frequent renter points");
+        return stringResultBuilder.toString();
     }
 
     private double amountFor(Rental each) {
