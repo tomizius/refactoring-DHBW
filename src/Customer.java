@@ -19,33 +19,28 @@ class Customer {
     public String statement() {
         double totalAmount = 0;
         var frequentRenterPoints = 0;
-        Enumeration<Rental> enumRentals = Collections.enumeration(rentals);
         var stringResultBuilder = new StringBuilder();
         stringResultBuilder.append("Rental Record for ")
                 .append(this.getName())
                 .append("\n\tTitle\t\tDays\tAmount\n")
         ;
 
-        while (enumRentals.hasMoreElements()) {
+        for (Rental eachRental : rentals){
             double thisAmount;
-            var each = enumRentals.nextElement();
-            //determine amounts for each line
-            thisAmount = amountFor(each);
-            // add frequent renter points
+            thisAmount = amountFor(eachRental);
             frequentRenterPoints++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1)
+            if ((eachRental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && eachRental.getDaysRented() > 1)
                 frequentRenterPoints++;
-            //show figures for this rental
             stringResultBuilder.append("\t")
-                    .append(each.getMovie().getTitle())
+                    .append(eachRental.getMovie().getTitle())
                     .append("\t\t")
-                    .append(each.getDaysRented())
+                    .append(eachRental.getDaysRented())
                     .append("\t")
                     .append(thisAmount)
                     .append("\n");
             totalAmount += thisAmount;
         }
+
         //add footer lines
         stringResultBuilder
                 .append("Amount owed is ")
