@@ -4,8 +4,8 @@ class Customer {
     private final String name;
     private final ArrayList<Rental> rentals = new ArrayList<>();
 
-    public Customer(String newname) {
-        name = newname;
+    public Customer(String newName) {
+        name = newName;
     }
 
     public void addRental(Rental arg) {
@@ -25,16 +25,16 @@ class Customer {
                 .append("\n\tTitle\t\tDays\tAmount\n")
         ;
 
-        for (Rental eachRental : rentals){
+        for (Rental rental : rentals){
             double thisAmount;
-            thisAmount = amountFor(eachRental);
+            thisAmount = amountFor(rental);
             frequentRenterPoints++;
-            if ((eachRental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && eachRental.getDaysRented() > 1)
+            if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
                 frequentRenterPoints++;
             stringResultBuilder.append("\t")
-                    .append(eachRental.getMovie().getTitle())
+                    .append(rental.getMovie().getTitle())
                     .append("\t\t")
-                    .append(eachRental.getDaysRented())
+                    .append(rental.getDaysRented())
                     .append("\t")
                     .append(thisAmount)
                     .append("\n");
