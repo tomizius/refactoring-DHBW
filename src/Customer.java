@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import java.util.*;
 
 class Customer {
@@ -7,7 +9,6 @@ class Customer {
     public Customer(String newName) {
         name = newName;
     }
-
     public void addRental(Rental arg) {
         rentals.add(arg);
     }
